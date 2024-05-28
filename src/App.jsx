@@ -1,6 +1,6 @@
 import React from "react";
 
 export default function App() {
-  console.log(import.meta.env.VITE_APPWRITE_URL);
+  console.log();
   return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
 }
