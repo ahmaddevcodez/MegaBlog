@@ -4,12 +4,14 @@ import { ID, Account, Client } from "appwrite";
 export class AuthService {
   client = new Client();
   account;
+
   constructor() {
     this.client
       .setEndpoint(conf.appWriteUrl)
       .setProject(conf.appWriteProjectId);
     this.account = new Account(this.client);
   }
+
   // createAccount
   async createAccount({ email, password, name }) {
     try {
@@ -25,7 +27,7 @@ export class AuthService {
         return userAccount;
       }
     } catch (error) {
-      console.error("Failed to create user:", error);
+      alert("Failed to create user: " + error);
       throw error;
     }
   }
@@ -35,7 +37,7 @@ export class AuthService {
     try {
       return await this.account.createEmailSession(email, password);
     } catch (error) {
-      console.error("Failed to login user:", error);
+      alert("Failed to login user: " + error);
       throw error;
     }
   }
@@ -45,10 +47,9 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.error("Failed to get the current user:", error);
-      throw error;
+      alert("Failed to get the current user: " + error);
+      return null;
     }
-    return null;
   }
 
   // deleteUser
@@ -56,7 +57,7 @@ export class AuthService {
     try {
       return await this.account.deleteSession();
     } catch (error) {
-      console.error("Failed to delete user:", error);
+      alert("Failed to delete user: " + error);
       throw error;
     }
   }
@@ -66,7 +67,7 @@ export class AuthService {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      alert("Failed to logout user:", error);
+      alert("Failed to logout user: " + error);
       throw error;
     }
   }
