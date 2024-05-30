@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
