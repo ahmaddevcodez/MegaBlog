@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import authService from "./appwrite/auth";
 import { login, logout } from "./store/authSlice";
-import { Footer, Header } from "./components/index";
+import { Footer, Header ,Container } from "./components/index";
 import { Outlet } from "react-router-dom";
+
 import "./App.css";
 
 export default function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,10 +28,12 @@ export default function App() {
     <div className="min-h-screen flex flex-wrap content-between ">
       <div className="w-full block">
         <Header />
-        <main>
+        <Container>
+          <main>
           TODO:
           <Outlet />
-        </main>
+          </main>
+        </Container>
         <Footer />
       </div>
     </div>

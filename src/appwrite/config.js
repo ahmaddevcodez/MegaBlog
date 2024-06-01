@@ -1,5 +1,6 @@
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 import conf from "../conf/conf";
+import { BiParagraph } from "react-icons/bi";
 
 export class Service {
   client = new Client();
@@ -15,13 +16,13 @@ export class Service {
   }
 
   // ------------------------createPost------------------------
-  async createPost({ title, slug, featuredImage, content, status, userId }) {
+  async createPost({ title, slug, featuredImage, content, status, userId,paragraph }) {
     try {
       return await this.databases.createDocument(
         conf.appWriteDatabaseId,
         conf.appWriteCollectionId,
         slug,
-        { title, featuredImage, content, status, userId }
+        { title, featuredImage, content, status, userId,paragraph }
       );
     } catch (error) {
       alert("Failed to create post: " + error);
@@ -59,7 +60,7 @@ export class Service {
     }
   }
 
-  // ------------------------getPost------------------------
+  // ------------------------getPost POST------------------------
   async getPost(slug) {
     try {
       return await this.databases.getDocument(
@@ -73,7 +74,7 @@ export class Service {
     }
   }
 
-  // ------------------------listDocument------------------------
+  // ------------------------listDocument POSTS------------------------
   async getPosts(queries = [Query.equal("status", "active")]) {
     try {
       return await this.databases.listDocument(
@@ -119,7 +120,7 @@ export class Service {
 
   async filePreview(fileId) {
     try {
-      return await this.bucket.getFilePreview(
+      return  this.bucket.getFilePreview(
         conf.appWriteBucketId,
         fileId,
         ImageGravity.Center // gravity (optional)
@@ -133,7 +134,7 @@ export class Service {
 
   async fileDownload(fileId) {
     try {
-      return await this.bucket.getFileDownload(conf.appWriteBucketId, fileId);
+      return this.bucket.getFileDownload(conf.appWriteBucketId, fileId);
     } catch (error) {
       alert("Failed to download file: " + error);
       return false;
