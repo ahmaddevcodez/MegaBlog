@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -8,12 +9,14 @@ export default function Protected({ children, authentication = true }) {
   const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    if (authentication && authStatus !== authentication) {
-      navigate("/login");
-    } else if (!authentication && authStatus !== authentication) {
-      navigate("/");
+    if (
+      (authentication && authStatus !== authentication) ||
+      (!authentication && authStatus === authentication)
+    ) {
+      navigate(authentication ? "/login" : "/");
+    } else {
+      setLoader(false);
     }
-    setLoader(false);
   }, [authStatus, navigate, authentication]);
 
   return loader ? (
@@ -24,3 +27,9 @@ export default function Protected({ children, authentication = true }) {
     { children }
   );
 }
+
+// Define prop types
+Protected.propTypes = {
+  children: PropTypes.node.isRequired,
+  authentication: PropTypes.bool,
+};

@@ -57,9 +57,7 @@ const Header = () => {
                 </li>
               ) : null
             )}
-            {authStatus && (
-                <Logoutbtn />
-              )}
+            {authStatus && <Logoutbtn />}
           </ul>
         </nav>
       </Container>

@@ -27,7 +27,14 @@ const Input = React.forwardRef(function Input(
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
             <Label htmlFor={id}>{label}</Label>
-            <UiInput ref={ref} id={id} placeholder={placeholder} type={type} className={`${className}`} {...props}/>
+            <UiInput
+              ref={ref}
+              id={id}
+              placeholder={placeholder}
+              type={type}
+              className={`${className}`}
+              {...props}
+            />
           </LabelInputContainer>
         </div>
 

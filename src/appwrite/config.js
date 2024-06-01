@@ -1,6 +1,5 @@
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 import conf from "../conf/conf";
-import { BiParagraph } from "react-icons/bi";
 
 export class Service {
   client = new Client();
@@ -16,13 +15,21 @@ export class Service {
   }
 
   // ------------------------createPost------------------------
-  async createPost({ title, slug, featuredImage, content, status, userId,paragraph }) {
+  async createPost({
+    title,
+    slug,
+    featuredImage,
+    content,
+    status,
+    userId,
+    paragraph,
+  }) {
     try {
       return await this.databases.createDocument(
         conf.appWriteDatabaseId,
         conf.appWriteCollectionId,
         slug,
-        { title, featuredImage, content, status, userId,paragraph }
+        { title, featuredImage, content, status, userId, paragraph }
       );
     } catch (error) {
       alert("Failed to create post: " + error);
@@ -120,7 +127,7 @@ export class Service {
 
   async filePreview(fileId) {
     try {
-      return  this.bucket.getFilePreview(
+      return this.bucket.getFilePreview(
         conf.appWriteBucketId,
         fileId,
         ImageGravity.Center // gravity (optional)

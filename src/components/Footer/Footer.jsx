@@ -1,7 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
-import PropTypes from "prop-types";
 import Logo from "../logo/Logo";
 const footerLinks = [
   {
@@ -111,17 +110,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-Footer.propTypes = {
-  links: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      link: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      targetSegment: PropTypes.string,
-    })
-  ),
 };
 
 export default Footer;
