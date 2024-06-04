@@ -1,68 +1,26 @@
 import React, { useId } from "react";
-import { Label } from "./ui/label";
-import { Input as UiInput } from "./ui/input"; // Renamed to avoid conflict
-import { cn } from "@/utils/cn";
 
-const Input = React.forwardRef(function Input(
-  { label, type = "", className = "", placeholder = "", ...props },
+const CommonInput = React.forwardRef(function Input(
+  { label, type = "text", className = "", ...props },
   ref
 ) {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted");
-  };
   const id = useId();
-
   return (
-    <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
-      {/* <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
-        Welcome to Aceternity
-      </h2>
-      <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-        Login to aceternity if you can because we don&apos;t have a login flow
-        yet
-      </p> */}
-
-      <form className="my-8" onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-          <LabelInputContainer>
-            <Label htmlFor={id}>{label}</Label>
-            <UiInput
-              ref={ref}
-              id={id}
-              placeholder={placeholder}
-              type={type}
-              className={`${className}`}
-              {...props}
-            />
-          </LabelInputContainer>
-        </div>
-
-        {/* <button
-          className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
-          type="submit"
-        >
-          Sign up &rarr;
-          <BottomGradient />
-        </button> */}
-
-        <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-      </form>
+    <div className="w-full">
+      {label && (
+        <label className="inline-block mb-1 pl-1" htmlFor={id}>
+          {label}
+        </label>
+      )}
+      <input
+        type={type}
+        className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
+        ref={ref}
+        {...props}
+        id={id}
+      />
     </div>
   );
 });
 
-const BottomGradient = () => (
-  <>
-    <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-    <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-  </>
-);
-
-const LabelInputContainer = ({ children, className }) => (
-  <div className={cn("flex flex-col space-y-2 w-full", className)}>
-    {children}
-  </div>
-);
-
-export default Input;
+export default CommonInput;

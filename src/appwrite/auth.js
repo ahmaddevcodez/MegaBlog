@@ -24,51 +24,36 @@ export class AuthService {
       if (userAccount) {
         return this.login({ email, password });
       } else {
-        return userAccount;
+        return userAccount; // This should be handled properly, possibly throwing an error
       }
     } catch (error) {
-      alert("Failed to create user: " + error);
-      throw error;
+      throw new Error(`Failed to create account: ${error.message}`);
     }
   }
 
-  // login
   async login({ email, password }) {
     try {
-      return await this.account.createEmailSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      alert("Failed to login user: " + error);
-      throw error;
+      throw new Error(`Failed to login: ${error.message}`);
     }
   }
 
-  // getCurrentUser
   async getCurrentUser() {
     try {
       return await this.account.get();
     } catch (error) {
-      alert("Failed to get the current user: " + error);
-      return null;
+      console.error("Appwrite service :: getCurrentUser :: error", error);
+      throw new Error(`Failed to get current user: ${error.message}`);
     }
   }
 
-  // deleteUser
-  async deleteUser() {
-    try {
-      return await this.account.deleteSession();
-    } catch (error) {
-      alert("Failed to delete user: " + error);
-      throw error;
-    }
-  }
-
-  // Logout
   async logout() {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      alert("Failed to logout user: " + error);
-      throw error;
+      console.error("Appwrite service :: logout :: error", error);
+      throw new Error(`Failed to logout: ${error.message}`);
     }
   }
 }

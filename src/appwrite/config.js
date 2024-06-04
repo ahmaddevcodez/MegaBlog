@@ -15,40 +15,30 @@ export class Service {
   }
 
   // ------------------------createPost------------------------
-  async createPost({
-    title,
-    slug,
-    featuredImage,
-    content,
-    status,
-    userId,
-    paragraph,
-  }) {
+  async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
       return await this.databases.createDocument(
         conf.appWriteDatabaseId,
         conf.appWriteCollectionId,
         slug,
-        { title, featuredImage, content, status, userId, paragraph }
+        { title, content, featuredImage, status, userId }
       );
     } catch (error) {
-      alert("Failed to create post: " + error);
-      throw error;
+      console.log("Appwrite serive :: createPost :: error", error);
     }
   }
 
   // ------------------------updatePost------------------------
-  async updatePost(slug, { title, featuredImage, content, status }) {
+  async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
         conf.appWriteDatabaseId,
         conf.appWriteCollectionId,
         slug,
-        { title, featuredImage, content, status }
+        { title, content, featuredImage, status }
       );
     } catch (error) {
-      alert("Failed to update post: " + error);
-      throw error;
+      console.log("Appwrite serive :: updatePost :: error", error);
     }
   }
 
@@ -62,7 +52,7 @@ export class Service {
       );
       return true;
     } catch (error) {
-      alert("Failed to delete post: " + error);
+      console.log("Appwrite serive :: deletePost :: error", error);
       return false;
     }
   }
@@ -76,7 +66,7 @@ export class Service {
         slug
       );
     } catch (error) {
-      alert("Failed to get post: " + error);
+      console.log("Appwrite serive :: getPost :: error", error);
       return false;
     }
   }
@@ -84,19 +74,17 @@ export class Service {
   // ------------------------listDocument POSTS------------------------
   async getPosts(queries = [Query.equal("status", "active")]) {
     try {
-      return await this.databases.listDocument(
+      return await this.databases.listDocuments(
         conf.appWriteDatabaseId,
         conf.appWriteCollectionId,
         queries
       );
     } catch (error) {
-      alert("Failed to get posts: " + error);
+      console.log("Appwrite serive :: getPosts :: error", error);
       return false;
     }
   }
-
   // ------------------------FILE UPLOAD SERVICES------------------------
-
   async uploadFile(file) {
     try {
       return await this.bucket.createFile(
@@ -105,7 +93,7 @@ export class Service {
         file
       );
     } catch (error) {
-      alert("Failed to upload file: " + error);
+      console.log("Appwrite serive :: uploadFile :: error", error);
       return false;
     }
   }
@@ -113,29 +101,18 @@ export class Service {
 
   async deleteFile(fileId) {
     try {
-      return await this.bucket.deleteFile(
-        conf.appWriteBucketId,
-        ID.unique(),
-        fileId
-      );
+      await this.bucket.deleteFile(conf.appWriteBucketId, fileId);
+      return true;
     } catch (error) {
-      alert("Failed to delete file: " + error);
+      console.log("Appwrite serive :: deleteFile :: error", error);
       return false;
     }
   }
+
   //   ------------------------FILE Preview SERVICES------------------------
 
-  async filePreview(fileId) {
-    try {
-      return this.bucket.getFilePreview(
-        conf.appWriteBucketId,
-        fileId,
-        ImageGravity.Center // gravity (optional)
-      );
-    } catch (error) {
-      alert("Failed to Preview file: " + error);
-      return false;
-    }
+  getFilePreview(fileId) {
+    return this.bucket.getFilePreview(conf.appWriteBucketId, fileId);
   }
   //   ------------------------FILE Download SERVICES------------------------
 
