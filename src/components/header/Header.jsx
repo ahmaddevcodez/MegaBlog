@@ -88,7 +88,7 @@ const Header = () => {
                 <img
                   className="h-[65px] inline"
                   src="../../../assets/images/tab-images/logo-2.png"
-                  alt="Your Company"
+                  alt="Binary Nexus"
                 />
               </Link>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
