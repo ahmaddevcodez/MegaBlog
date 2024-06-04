@@ -77,16 +77,17 @@ export default function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+    <form
+      onSubmit={handleSubmit(submit)}
+      className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6"
+    >
+      <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
         <CommonInput
-          label="Title :"
           placeholder="Title"
           className="mb-4"
           {...register("title", { required: true })}
         />
         <CommonInput
-          label="Slug :"
           placeholder="Slug"
           className="mb-4"
           {...register("slug", { required: true })}
@@ -96,6 +97,37 @@ export default function PostForm({ post }) {
             });
           }}
         />
+      </div>
+
+      <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* <label class="text-sm text-gray-400 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          Picture
+        </label> */}
+
+        <input
+          type="file"
+          className="mb-4 flex h-10  rounded-md border border-input bg-white px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium"
+          accept="image/png, image/jpg, image/jpeg, image/gif"
+          {...register("image", { required: !post })}
+        ></input>
+        <Select
+          options={["active", "inactive"]}
+          className="w-full"
+          {...register("status", { required: true })}
+        />
+      </div>
+
+      {post && (
+        <div className="md:col-span-2 w-full mb-4">
+          <img
+            src={appWriteService.getFilePreview(post.featuredImage)}
+            alt={post.title}
+            className="rounded-lg"
+          />
+        </div>
+      )}
+
+      <div className="md:col-span-2">
         <RTE
           label="Content :"
           name="content"
@@ -103,38 +135,30 @@ export default function PostForm({ post }) {
           defaultValue={getValues("content")}
         />
       </div>
-      <div className="w-1/3 px-2">
-        <CommonInput
-          label="Featured Image :"
-          type="file"
-          className="mb-4"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
-        />
-        {post && (
-          <div className="w-full mb-4">
-            <img
-              src={appWriteService.getFilePreview(post.featuredImage)}
-              alt={post.title}
-              className="rounded-lg"
-            />
-          </div>
-        )}
 
-        <Select
-          options={["active", "inactive"]}
-          label="Status"
-          className="mb-4"
-          {...register("status", { required: true })}
-        />
-        <CommonBtn
-          type="submit"
+      <div className="md:col-span-2">
+        {/* <CommonBtn
           bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
+          className="w-full mt-4"
+        >
+        </CommonBtn> */}
+        <button
+          type="submit"
+          className="bg-gradient-to-br relative group/btn from-white   to-white block dark:bg-zinc-800 w-full text-myprimary rounded-md h-9 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] pl-3 pr-3"
         >
           {post ? "Update" : "Submit"}
-        </CommonBtn>
+
+          <BottomGradient />
+        </button>
       </div>
     </form>
   );
 }
+const BottomGradient = () => {
+  return (
+    <>
+      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+    </>
+  );
+};

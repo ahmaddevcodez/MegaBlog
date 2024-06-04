@@ -33,7 +33,7 @@ export default function Post() {
   };
 
   return post ? (
-    <div className="py-8">
+    <div className="py-8 bg-black text-white">
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
           <img
@@ -43,23 +43,40 @@ export default function Post() {
           />
 
           {isAuthor && (
-            <div className="absolute right-6 top-6">
+            <div className="absolute right-6 top-6 flex">
               <Link to={`/edit-post/${post.$id}`}>
-                <CommonBtn bgColor="bg-green-500" className="mr-3">
+                <button
+                  className="bg-gradient-to-br relative group/btn from-white w-[100px]   to-white block dark:bg-zinc-800  text-myprimary rounded-md h-9 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] pl-3 pr-3"
+                  type="submit"
+                >
                   Edit
-                </CommonBtn>
+                  <BottomGradient />
+                </button>
               </Link>
-              <CommonBtn bgColor="bg-red-500" onClick={deletePost}>
+              <button
+                onClick={deletePost}
+                className="bg-gradient-to-br ml-2 relative group/btn from-white  w-[100px]  to-white block dark:bg-zinc-800 text-myprimary rounded-md h-9 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] pl-3 pr-3"
+                type="submit"
+              >
                 Delete
-              </CommonBtn>
+                <BottomGradient />
+              </button>
             </div>
           )}
         </div>
         <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+          <h1 className="text-4xl font-bold text-center">{post.title}</h1>
         </div>
-        <div className="browser-css">{parse(post.content)}</div>
+        <div className="browser-css w-[75%] mx-auto">{parse(post.content)}</div>
       </Container>
     </div>
   ) : null;
 }
+const BottomGradient = () => {
+  return (
+    <>
+      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+    </>
+  );
+};

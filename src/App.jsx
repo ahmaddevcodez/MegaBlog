@@ -25,7 +25,7 @@ export default function App() {
   }, [dispatch]);
 
   return !loading ? (
-    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+    <div className="min-h-screen flex flex-wrap content-between bg-black">
       <div className="w-full block">
         <Header />
         <main>
@@ -35,7 +35,7 @@ export default function App() {
       </div>
     </div>
   ) : (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen bg-black">
       <div className="loader"></div>
     </div>
   );
