@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import authService from "../appwrite/auth";
-import { login as authLogin } from "../store/authSlice";
-import { CommonBtn } from "./index";
-import CommonInput from "./CommonInput";
-import Logo from "./logo/Logo";
+import authService from "../../appwrite/auth";
+import { login as authLogin } from "../../store/authSlice";
+import { CommonBtn } from "../index";
+import CommonInput from "../CommonInput";
+import Logo from "../logo/Logo";
 
 const Login = () => {
   const navigate = useNavigate();
