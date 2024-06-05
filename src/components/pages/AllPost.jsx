@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import appWriteService from "../../appwrite/config";
 import { PostCard, Container } from "../index";
-import { SparklesCore } from "../ui/sparkles";
+import SparklesCore from "../ui/Sparkles";
 
 const AllPost = () => {
   const [posts, setPosts] = useState([]);

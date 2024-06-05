@@ -1,8 +1,7 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import appwriteService from "../../appwrite/config";
 import { PostCard, Container } from "../index";
-import { SparklesCore } from "../ui/sparkles";
+import SparklesCore from "../ui/Sparkles";
 function Home() {
   const [posts, setPosts] = useState([]);
 

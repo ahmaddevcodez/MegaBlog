@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Logoutbtn } from "../index";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   Disclosure,
   DisclosureButton,
