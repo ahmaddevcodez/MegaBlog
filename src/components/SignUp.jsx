@@ -4,7 +4,10 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import authService from "../appwrite/auth";
 import { login as loginAction } from "../store/authSlice";
-import { CommonInput, CommonBtn } from "./index";
+import {  CommonBtn } from "./index";
+import CommonInput from "./CommonInput";
+
+
 import Logo from "./logo/Logo";
 
 const SignUp = () => {

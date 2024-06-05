@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { CommonBtn, CommonInput, RTE, Select } from "../index";
+import { CommonBtn, RTE, Select } from "../index";
+import CommonInput from "../CommonInput";
 import appWriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
