@@ -14,7 +14,7 @@ export default function RTE({ name, control, defaultValue = "" }) {
             initialValue={defaultValue}
             init={{
               initialValue: defaultValue,
-              height: 200,
+              height: 300,
               menubar: true,
               plugins: [
                 "image",
