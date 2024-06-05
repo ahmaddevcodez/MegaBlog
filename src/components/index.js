@@ -8,7 +8,6 @@ import RTE from "./RTE.jsx";
 import SignUp from "./SignUp.jsx";
 import PostForm from "./post-form/PostForm.jsx";
 import PostCard from "./PostCard.jsx";
-import AuthLayout from "./AuthLayout.jsx";
 
 export {
   Footer,
@@ -21,5 +20,4 @@ export {
   SignUp,
   PostForm,
   PostCard,
-  AuthLayout,
 };
