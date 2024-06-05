@@ -75,11 +75,11 @@
 }
 
 .facebook:hover {
-  color: #0073B1; /* Facebook blue */
+  color: #0073b1; /* Facebook blue */
 }
 
 .twitter:hover {
-  color: #f4f2f2; /* Twitter blue */
+  color: #000; /* Twitter blue */
 }
 
 .instagram:hover {

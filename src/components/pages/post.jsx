@@ -67,7 +67,11 @@ export default function Post() {
         <div className="w-full mb-6">
           <h1 className="text-4xl font-bold text-center">{post.title}</h1>
         </div>
-        <div className="browser-css w-[75%] mx-auto">{parse(post.content)}</div>
+        <div className=" border-[1.4px] border-white p-1 rounded-lg">
+          <span className="browser-css text-justify w-[75%] mx-auto">
+            {parse(post.content)}
+          </span>
+        </div>
       </Container>
     </div>
   ) : null;

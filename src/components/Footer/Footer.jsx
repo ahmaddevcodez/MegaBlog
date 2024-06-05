@@ -33,8 +33,8 @@ const footerLinks = [
 
 const Footer = () => {
   return (
-    <div className="border-mywhite mt-3 space-y-8 border-t py-5 mx-auto ">
-      <Container className="bg-myprimary ">
+    <div className="mt-3 space-y-8 border-t py-5 mx-auto bg-myprimary">
+      <Container className="">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="text-mywhite">
@@ -98,7 +98,7 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-300">
           &copy; Binary Nexus {new Date().getFullYear()}. All rights reserved.
         </p>
       </Container>
