@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import authService from "../../appwrite/auth";
 import { login as authLogin } from "../../store/authSlice";
 import { CommonBtn } from "../index";
-import CommonInput from "../CommonInput";
+import CommonInput from "./pagesUI/CommonInput";
 import Logo from "../logo/Logo";
 
 const Login = () => {

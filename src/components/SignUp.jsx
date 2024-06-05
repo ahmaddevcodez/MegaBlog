@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import authService from "../appwrite/auth";
 import { login as loginAction } from "../store/authSlice";
 import {  CommonBtn } from "./index";
-import CommonInput from "./CommonInput";
+import CommonInput from "./pages/pagesUI/CommonInput";
 
 
 import Logo from "./logo/Logo";
