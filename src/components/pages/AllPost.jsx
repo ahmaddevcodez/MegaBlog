@@ -48,17 +48,17 @@ const AllPost = () => {
     );
   }
   return (
-    <div className="w-full py-8">
-      <Container>
-        <div className="flex flex-wrap">
+    <Container>
+      <div className="">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center ">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
+            <div key={post.$id} className="p-2">
               <PostCard {...post} />
             </div>
           ))}
         </div>
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 };
 

@@ -31,9 +31,7 @@ function PostCard({ $id, title, featuredImage, content }) {
               <img
                 src={appWriteService.getFilePreview(featuredImage)}
                 alt={title}
-                layout="fill"
-                objectfit="cover"
-                className="group-hover:scale-95 group-hover:rounded-2xl transform object-cover transition duration-200"
+                className="w-full   group-hover:scale-95 group-hover:rounded-2xl transform object-cover transition duration-200 object-contain"
               />
             </div>
             <div className="p-4">
